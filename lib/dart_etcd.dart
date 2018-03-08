@@ -4,5 +4,3 @@
 library dart_etcd;
 
 export 'src/dart_etcd_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
