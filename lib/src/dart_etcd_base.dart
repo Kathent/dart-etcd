@@ -2,6 +2,7 @@ import 'package:grpc/grpc.dart';
 import 'dart:async';
 import 'package:dart_etcd/src/protoc-gen/rpc.pb.dart';
 import 'package:dart_etcd/src/kv/kv.dart';
+import 'package:dart_etcd/src/client/client_impl.dart';
 
 class Config {
   List<String> endpoints;
@@ -33,7 +34,8 @@ class Auth {
 }
 
 abstract class KV {
-  Future<GetResponse> put(String key, String value);
+  Future<PutResponse> put(String key, String value);
+  Future<GetResponse> get(String key);
 }
 
 class Cluster {
@@ -50,6 +52,16 @@ class Lease {
 
 class Watch {
 
+}
+
+class ClientBuilder {
+  Config config;
+
+  ClientImpl build(){
+    return config == null ? null : new ClientImpl(config);
+  }
+
+  ClientBuilder(this.config);
 }
 
 

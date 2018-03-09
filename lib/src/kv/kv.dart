@@ -26,3 +26,20 @@ class GetResponse extends AbstractResponse<RangeResponse> {
     return response.count.toInt();
   }
 }
+
+class PutResponseS extends AbstractResponse<PutResponse> {
+  KeyValue pre;
+  PutResponseS(PutResponse response) : super(response, response.header);
+
+  KeyValue preKv() {
+    if (pre == null) {
+      pre = response.prevKv.clone();
+    }
+
+    return pre;
+  }
+
+  bool hasPreKv() {
+    return preKv() == null;
+  }
+}

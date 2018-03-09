@@ -1,40 +1,47 @@
 import 'package:dart_etcd/src/dart_etcd_base.dart';
+import 'package:dart_etcd/src/connection/connection_manager.dart';
+import 'package:dart_etcd/src/kv/kv_impl.dart';
 
 class ClientImpl implements Client{
+  Config config;
+  ConnectionManager connectionManager;
+
+  ClientImpl(this.config) {
+    connectionManager = new ConnectionManager(config);
+  }
 
   @override
   void close() {
-    // TODO: implement close
+
   }
 
   @override
   Auth getAuthClient() {
-    // TODO: implement getAuthClient
+    return null;
   }
 
   @override
   Cluster getClusterClient() {
-    // TODO: implement getClusterClient
+    return null;
   }
 
   @override
   KV getKVClient() {
-    
+    return new KvImpl(connectionManager);
   }
 
   @override
   Lease getLeaseClient() {
-    // TODO: implement getLeaseClient
+    return null;
   }
 
   @override
   Maintenance getMaintenanceClient() {
-    // TODO: implement getMaintenanceClient
+    return null;
   }
 
   @override
   Watch getWatchClient() {
-    // TODO: implement getWatchClient
+    return null;
   }
-
 }
