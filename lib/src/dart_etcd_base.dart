@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dart_etcd/src/protoc-gen/rpc.pb.dart';
 import 'package:dart_etcd/src/kv/kv.dart';
 import 'package:dart_etcd/src/client/client_impl.dart';
+import 'package:dart_etcd/src/auth/auth.dart';
 
 class Config {
   List<String> endpoints;
@@ -29,8 +30,8 @@ abstract class Client {
   void close();
 }
 
-class Auth {
-
+abstract class Auth {
+  Future<AuthDisableResponseS> disableAuth();
 }
 
 abstract class KV {

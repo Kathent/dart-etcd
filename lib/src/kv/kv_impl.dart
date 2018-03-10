@@ -24,6 +24,6 @@ class KvImpl implements KV{
   Future<GetResponse> get(String key) async{
     RangeRequest rangeRequest = RangeRequest.create()
         ..key=key.codeUnits;
-    return await kvClient.range(rangeRequest).then((val) => new GetResponse(val));
+    return await kvClient.range(rangeRequest, options: new CallOptions(metadata: {"token": "1234"})).then((val) => new GetResponse(val));
   }
 }

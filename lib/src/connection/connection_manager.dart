@@ -5,7 +5,9 @@ class ConnectionManager {
   Config config;
   List<Uri> list;
 
-  ClientChannel getChannel() => new ClientChannel(list[0].host, port: list[0].port);
+  ClientChannel getChannel() => new ClientChannel(list[0].host,
+      port: list[0].port,
+      options: new ChannelOptions(credentials: new ChannelCredentials.insecure()));
 
   ConnectionManager(this.config){
     list = new List();
