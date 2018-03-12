@@ -13,17 +13,17 @@ class KvImpl implements KV{
   KvImpl(this.manager) : kvClient = new KVClient(manager.getChannel());
 
   @override
-  Future<PutResponse> put(String key, String value) async{
+  Future<PutResponse> put(String key, String value){
     PutRequest putRequest = PutRequest.create()
     ..key = key.codeUnits
     ..value = value.codeUnits;
-    return await kvClient.put(putRequest);
+    return kvClient.put(putRequest);
   }
 
   @override
-  Future<GetResponse> get(String key) async{
+  Future<GetResponse> get(String key) {
     RangeRequest rangeRequest = RangeRequest.create()
         ..key=key.codeUnits;
-    return await kvClient.range(rangeRequest, options: new CallOptions(metadata: {"token": "1234"})).then((val) => new GetResponse(val));
+    return kvClient.range(rangeRequest, options: new CallOptions(metadata: {"token": "12345"})).then((val) => new GetResponse(val));
   }
 }
